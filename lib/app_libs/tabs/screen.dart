@@ -2,7 +2,9 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:probardispositivofisico/app_widgets/bottom_navigation_bar.dart';
 import 'package:probardispositivofisico/dashboard/screens/product/products_screen.dart';
+import 'package:probardispositivofisico/history/screens/screen.dart';
 import 'package:probardispositivofisico/profile/screens/screen.dart';
+import 'package:probardispositivofisico/reservations/screens/screen.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({Key key}) : super(key: key);
@@ -20,7 +22,7 @@ class _TabsScreenState extends State<TabsScreen> {
             index: _selectedTab.value,
             children: [
               const AgenciesScreen(),
-              const ProfileScreen(),
+              const ReservationScreen(),
               const ProfileScreen(),
             ],
           )),

@@ -36,6 +36,8 @@ dependencies:
   animations:
   url_launcher:
   image_picker:
+  http_auth:
+  webview_flutter:
 
 dev_dependencies:
   flutter_test:

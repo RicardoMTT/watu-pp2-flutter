@@ -17,6 +17,8 @@ class LoginFormBloc extends FormBloc<String, String> {
   @override
   void onSubmitting() {
     LoadingDialog.show();
+    print(email.value);
+    print(password.value);
 
     final _client = Get.find<GraphQLClient>();
     _client.mutate(

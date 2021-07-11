@@ -10,6 +10,7 @@ import 'package:probardispositivofisico/dashboard/mutations/register_purchase.da
 import 'package:probardispositivofisico/dashboard/queries/get_product.dart';
 import 'package:probardispositivofisico/dashboard/screens/details/details_controller.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
+import 'package:probardispositivofisico/services/paypalPayment.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Body extends StatefulWidget {
@@ -145,6 +146,7 @@ class _BodyState extends State<Body> {
                       InkWell(
                         onTap: () {
                           print('VER INFO');
+                          Get.bottomSheet(InfoProgramBottomSheet());
                         },
                         child: Container(
                           width: 70,
@@ -165,15 +167,15 @@ class _BodyState extends State<Body> {
             items.add(SizedBox(
               height: 15,
             ));
-            items.add(Container(
-              padding: EdgeInsets.symmetric(horizontal: 90, vertical: 5),
-              child: RaisedButton(
-                onPressed: () {},
-                color: kPrimaryColor,
-                textColor: Colors.white,
-                child: Text('Reservar'),
-              ),
-            ));
+            // items.add(Container(
+            //   padding: EdgeInsets.symmetric(horizontal: 90, vertical: 5),
+            //   child: RaisedButton(
+            //     onPressed: () {},
+            //     color: kPrimaryColor,
+            //     textColor: Colors.white,
+            //     child: Text('Reservar'),
+            //   ),
+            // ));
             return CustomScrollView(
               slivers: [
                 SliverAppBar(
@@ -181,7 +183,7 @@ class _BodyState extends State<Body> {
                   //pinned: true,
                   expandedHeight: 270,
                   flexibleSpace: Image.network(
-                    'http://192.168.1.8:1337' + _item['imagen'][0]['url'],
+                    'http://192.168.1.10:1337' + _item['imagen'][0]['url'],
                     width: size.width,
                     height: size.height * 0.70,
                     fit: BoxFit.fill,
@@ -194,6 +196,37 @@ class _BodyState extends State<Body> {
             );
           },
         ),
+      ),
+    );
+  }
+}
+
+class InfoProgramBottomSheet extends StatelessWidget {
+  const InfoProgramBottomSheet({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: Column(
+        children: [
+          Container(
+              child: Text('Info del programa'),
+              height: 100,
+              color: Colors.white,
+              width: double.infinity),
+          FlatButton(
+              onPressed: () {
+                Get.to(
+                  PaypalPayment(
+                    onFinish: (number) {
+                      print('order id: ' + number);
+                    },
+                  ),
+                );
+              },
+              child: Text('Reservar inscripción'))
+        ],
       ),
     );
   }

@@ -44,8 +44,8 @@ class AgencyCard extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
                 child: FadeInImage.assetNetwork(
                   placeholder: 'assets/gif/loading.gif',
-                  image:
-                      ('http://192.168.1.8:1337' + product['imagen'][0]['url']),
+                  image: ('http://192.168.1.10:1337' +
+                      product['imagen'][0]['url']),
                 ),
               ),
             ),
